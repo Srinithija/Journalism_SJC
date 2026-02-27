@@ -9,11 +9,8 @@ import Heading from "../components/Heading";
 import HogCard from "../components/Hogpage/HogCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { PuffLoader } from "react-spinners";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const PAGE_SIZE = 10;
-import { useTranslation } from "next-i18next";
 export default function StoriesPage({ articles }) {
-  const { t } = useTranslation();
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
   const hasMore = displayCount < articles.length;
 
@@ -25,7 +22,7 @@ export default function StoriesPage({ articles }) {
 
   return (
     <Canvas bgcolor="white">
-      <Heading title={t("navigation.humansOfGct")} />
+      <Heading title={"Humans of GCT"} />
       <InfiniteScroll
         dataLength={visibleStories.length}
         next={getMoreStories}
@@ -110,7 +107,6 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       articles: sortedResults,
-      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }

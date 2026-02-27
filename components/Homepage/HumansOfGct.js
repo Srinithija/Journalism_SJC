@@ -1,12 +1,10 @@
 import Heading from "../Heading";
 import Canvas from "../Generic/Canvas";
 import HogCard from "./HogCard";
-import { useTranslation } from "next-i18next";
 const HumansOfGct = ({ hogs }) => {
-  const { t } = useTranslation();
   return (
     <Canvas bgcolor="white">
-      <Heading title={t("navigation.humansOfGct")} />
+      <Heading title={"Humans of GCT"} />
       <div className="flex flex-wrap justify-evenly gap-4 md:gap-6 p-1 justify-evenly">
         {hogs &&
           hogs.map((hog) => {
