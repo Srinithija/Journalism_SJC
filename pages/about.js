@@ -1,14 +1,11 @@
 import Canvas from "../components/Generic/Canvas";
 import Heading from "../components/Heading";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
 
 export default function AboutPage() {
-  const { t } = useTranslation();
 
   return (
     <Canvas bgcolor="white">
-      <Heading title={t("navigation.about")} />
+      <Heading title="About" />
 
       <div className="max-w-3xl mx-auto px-6 pb-16">
         {/* Mission Section */}
@@ -120,10 +117,3 @@ export default function AboutPage() {
   );
 }
 
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
-}

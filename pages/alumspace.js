@@ -5,7 +5,6 @@ import Heading from "../components/Heading";
 import AlumspaceCard from "../components/Alumspace/AlumspaceCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { PuffLoader } from "react-spinners";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const PAGE_SIZE = 10;
 
 export default function AlumspacePage({ items }) {
@@ -73,7 +72,6 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       items: alumspace.results,
-      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }

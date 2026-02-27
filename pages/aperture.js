@@ -5,12 +5,10 @@ import Heading from "../components/Heading";
 import ApertureCard from "../components/Aperture/ApertureCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { PuffLoader } from "react-spinners";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+
 const PAGE_SIZE = 12;
 
 export default function AperturePage({ items }) {
-  const { t } = useTranslation();
   const [selectedItem, setSelectedItem] = useState(null);
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
 
@@ -25,7 +23,7 @@ export default function AperturePage({ items }) {
 
   return (
     <Canvas bgcolor="white">
-      <Heading title={t("navigation.aperture")} />
+      <Heading title="Aperture" />
 
       <InfiniteScroll
         dataLength={visibleItems.length}
@@ -104,7 +102,6 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       items: apertures.results,
-      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }

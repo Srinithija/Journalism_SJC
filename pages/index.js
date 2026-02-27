@@ -10,7 +10,6 @@ import AbcChannel from "../components/Homepage/AbcChannel";
 import AlumSpace from "../components/Homepage/AlumSpace";
 // import Layout from "../components/Layout";
 import styles from "../styles/Home.module.css";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export default function Home({ stories, hogs, alumspace }) {
   return (
@@ -89,14 +88,12 @@ export async function getServerSideProps(context) {
     }`,
   });
 
-  const locale = context.locale || context.defaultLocale || 'en';
 
   return {
     props: {
       stories: stories.results,
       hogs: hogs.results,
       alumspace: alumspace.results,
-      ...(await serverSideTranslations(locale, ['common'])),
     },
   };
 }
