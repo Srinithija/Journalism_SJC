@@ -49,7 +49,7 @@ export default function AlumspacePage({ items }) {
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({  }) {
   const alumspace = await client.getByType("alumspace", {
     pageSize: 100,
     orderings: {

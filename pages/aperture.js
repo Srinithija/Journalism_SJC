@@ -82,7 +82,7 @@ export default function AperturePage({ items }) {
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({  }) {
   const apertures = await client.getByType("apertures", {
     pageSize: 100,
     orderings: {
