@@ -81,6 +81,6 @@ export async function getStaticPaths() {
         uid: item.uid,
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
