@@ -102,13 +102,26 @@ export default function AlumspaceDetail({ page }) {
 }
 
 export async function getStaticProps({ params }) {
-  const page = await client.getByUID("alumspace", params.uid);
+  try {
+    const page = await client.getByUID("alumspace", params.uid);
+    
+    if (!page) {
+      return {
+        notFound: true,
+      };
+    }
 
-  return {
-    props: {
-      page,
-    },
-  };
+    return {
+      props: {
+        page,
+      },
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export async function getStaticPaths() {
