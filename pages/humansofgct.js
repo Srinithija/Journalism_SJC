@@ -87,7 +87,7 @@ const getSlugNumber = (item) => {
   return match ? parseInt(match[0], 10) : 0;
 };
 
-export async function getServerSideProps({  }) {
+export async function getServerSideProps() {
   const hogs = await client.getByType("hog", {
     pageSize: 100,
     graphQuery: `{
