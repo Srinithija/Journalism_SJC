@@ -104,16 +104,24 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const pages = await client.getAllByType("hog");
-
-  return {
-    paths: pages.map((story) => {
-      return {
-        params: {
-          uid: story.uid,
-        },
-      };
-    }),
-    fallback: false,
-  };
+  try {
+    const pages = await client.getAllByType("hog");
+    
+    return {
+      paths: pages
+        .filter(item => item && item.uid)
+        .map((item) => ({
+          params: {
+            uid: item.uid,
+          },
+        })),
+      fallback: true,
+    };
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 }

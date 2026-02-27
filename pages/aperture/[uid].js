@@ -73,14 +73,24 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const pages = await client.getAllByType("apertures");
-
-  return {
-    paths: pages.map((item) => ({
-      params: {
-        uid: item.uid,
-      },
-    })),
-    fallback: true,
-  };
+  try {
+    const pages = await client.getAllByType("apertures");
+    
+    return {
+      paths: pages
+        .filter(item => item && item.uid) // Ensure item and uid exist
+        .map((item) => ({
+          params: {
+            uid: item.uid,
+          },
+        })),
+      fallback: true,
+    };
+  } catch (error) {
+    console.error("Error in getStaticPaths for aperture:", error);
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 }
