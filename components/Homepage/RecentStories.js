@@ -2,14 +2,12 @@ import Heading from "../Heading";
 import Canvas from "../Generic/Canvas";
 import LargeStoryCard from "./LargeStoryCard";
 import SmallStoryCard from "./SmallStoryCard";
-import { useTranslation } from "next-i18next";
 const RecentStories = ({ stories }) => {
-  const { t } = useTranslation();
   const otherStories = [...stories.slice(0, 0), ...stories.slice(1)];
   
   return (
     <Canvas bgcolor="white">
-      <Heading title={t("homepage.recentStories")} />
+      <Heading title={"Recent Stories"} />
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 md:gap-y-8 md:my-4 p-1">
         {/* Large Story Card with grey padding */}
         <div className="bg-white dark:bg-grey-800 p-2 rounded shadow-md">

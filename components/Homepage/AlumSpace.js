@@ -2,9 +2,7 @@ import Link from "next/link";
 import Heading from "../Heading";
 import Canvas from "../Generic/Canvas";
 import { linkResolver } from "../../prismic-configuration";
-import { useTranslation } from "next-i18next";
 const AlumspaceHomeCard = ({ item }) => {
-  const { t } = useTranslation();
   const title = item.data.title?.[0]?.text || "Untitled";
   const alum = item.data.alum || "";
   const batch = item.data.batch || "";
@@ -40,10 +38,9 @@ const AlumspaceHomeCard = ({ item }) => {
 };
 
 const AlumSpace = ({ items }) => {
-  const { t } = useTranslation();
   return (
     <Canvas bgcolor="white">
-      <Heading title={t("homepage.alumspace")} />
+      <Heading title={"AlumSpace"} />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 px-6 pb-8">
         {items && items.length > 0 ? (
           items.map((item) => (
